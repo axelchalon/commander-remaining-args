@@ -1,6 +1,6 @@
 const { Command } = require('commander');
 const test = require('tape');
-const getRemainingArgs = require('.');
+const getRemainingArgs = require('../');
 
 test('should get remaining args', t => {
   const cli = new Command()
