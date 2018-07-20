@@ -19,6 +19,6 @@ cli
 
 // node myprogram.js --some-flag --unknown-flag --unknown-arg=value -x
 
-getRemainingArgs(cli); // ['--unknown-flag', '--unknown-arg=value', '-x']);
+getRemainingArgs(cli); // ['--unknown-flag', '--unknown-arg=value', '-x'])
 
 ```
