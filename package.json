@@ -16,6 +16,7 @@
     "remaining",
     "unknown",
     "arguments",
+    "args",
     "options",
     "pass"
   ],
