@@ -27,6 +27,16 @@ test('should have no side effects', t => {
   t.end();
 });
 
+test('should work with no arguments', t => {
+  const cli = new Command()
+    .allowUnknownOption()
+    .parse(['node', 'test.js']);
+
+  t.deepEqual(getRemainingArgs(cli), []);
+
+  t.end();
+});
+
 test('order should not matter', t => {
   const cli = new Command()
     .allowUnknownOption()
