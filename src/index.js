@@ -1,6 +1,8 @@
 module.exports = cli =>
   cli.rawArgs
-    .splice(Math.max(cli.rawArgs.findIndex(item => item.startsWith('-')), 0)) // Remove all arguments until one --option
+    // Skip until we reach the first --option
+    .slice(Math.max(cli.rawArgs.findIndex(item => item.startsWith('-')), 0))
+    // Filter out arguments already parsed by commander.js
     .filter((rawArg, index, rawArgs) => {
       // If the option is consumed by commander.js, then we skip it
       if (cli.optionFor(rawArg)) {

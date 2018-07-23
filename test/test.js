@@ -14,6 +14,19 @@ test('should get remaining args', t => {
   t.end();
 });
 
+test('should have no side effects', t => {
+  const cli = new Command()
+    .allowUnknownOption()
+    .option('--existing')
+    .option('--existing-two')
+    .parse(['node', 'test.js', '--existing', '--existing-two', '--extra', 'value', '--extra-two']);
+
+  t.deepEqual(getRemainingArgs(cli), ['--extra', 'value', '--extra-two']);
+  t.deepEqual(getRemainingArgs(cli), ['--extra', 'value', '--extra-two']);
+
+  t.end();
+});
+
 test('order should not matter', t => {
   const cli = new Command()
     .allowUnknownOption()
