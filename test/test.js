@@ -76,11 +76,23 @@ test('should work with short flags', t => {
 test('should work with values', t => {
   const cli = new Command()
     .allowUnknownOption()
-    .option('-a <value>')
-    .option('-b')
-    .parse(['node', 'test.js', '-a', 'aa', '-c', 'cc', '-b']);
+    .option('-a <VALUE>')
+    .option('--bee <VALUE>')
+    .parse(['node', 'test.js', '-a', 'AA', '--bee=B', '-c', 'CC', '--dee=D']);
 
-  t.deepEqual(getRemainingArgs(cli), ['-c', 'cc']);
+  t.deepEqual(getRemainingArgs(cli), ['-c', 'CC', '--dee=D']);
+
+  t.end();
+});
+
+test('should work with short flags with values', t => {
+  const cli = new Command()
+    .allowUnknownOption()
+    .option('-a <VALUE>')
+    .option('-b <VALUE>')
+    .parse(['node', 'test.js', '-a', 'AA', '-bBB', '-c', 'CC', '-dDD']);
+
+  t.deepEqual(getRemainingArgs(cli), ['-c', 'CC', '-dDD']);
 
   t.end();
 });

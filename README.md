@@ -22,3 +22,7 @@ cli
 getRemainingArgs(cli); // ['--unknown-flag', '--unknown-arg=value', '-x'])
 
 ```
+
+## Caveats
+
+* No support for subcommands

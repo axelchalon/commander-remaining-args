@@ -7,6 +7,17 @@ module.exports = cli =>
     )
     // Filter out arguments already parsed by commander.js
     .filter((rawArg, index, rawArgs) => {
+      // --option=B, --oB
+      const matches = rawArg.match(/^(--.+)=(.+)$/) || rawArg.match(/^(-[^-])(.+)$/);
+      if (matches) {
+        const [, option] = matches;
+        if (cli.optionFor(option)) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+
       // If the option is consumed by commander.js, then we skip it
       if (cli.optionFor(rawArg)) {
         return false;
